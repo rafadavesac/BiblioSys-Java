@@ -158,7 +158,7 @@ void remover() throws Exception{
     int indice = Input.scanInt("Digite o índice do livro que você deseja remover: ");
 
     service.remover(indice);
-
+    IO.println("Livro removido com sucesso!");
 }
 
 void imprimirLista(List<Livro> livros){
@@ -191,4 +191,5 @@ void editar()throws Exception{
     Livro livroEditado = new Livro(novoTitulo, novoAutor, novoAno, novoPag);
 
     service.editar(indice, livroEditado);
+    IO.println("Livro editado com sucesso!");
 }

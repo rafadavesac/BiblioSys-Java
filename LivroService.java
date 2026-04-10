@@ -94,18 +94,18 @@ public class LivroService {
         int n = acervo.size();
 
         for (int i = 0; i < n - 1; i++) { // quantia de iteracoes
-            for (int j = 1; j < n - 1; j++) { // percorre o proximo indice
+            for (int j = 0; j < n - 1; j++) { // percorre o proximo indice
 
                 Livro atual = ordenacaoAlfabetica.get(j);
                 Livro proximo = ordenacaoAlfabetica.get(j + 1);
 
-                if (topico == "titulo") {
+                if (topico.equals("titulo")) {
                     if (atual.getTitulo().compareTo(proximo.getTitulo()) > 0) { // atual vem depois do proximo alfabeticamente?
                         ordenacaoAlfabetica.set(j, proximo); // troca de lugar
                         ordenacaoAlfabetica.set(j + 1, atual);
                     }
                 }
-                if (topico == "autor") {
+                if (topico.equals("autor")) {
                     if (atual.getAutor().compareTo(proximo.getAutor()) > 0) {
                         ordenacaoAlfabetica.set(j, proximo);
                         ordenacaoAlfabetica.set(j + 1, atual);
@@ -122,7 +122,7 @@ public class LivroService {
     int n = ordenacaoAno.size();
 
     for (int i = 0; i < n - 1; i++) {
-        for (int j = 1; j < n - 1; j++) {
+        for (int j = 0; j < n - 1; j++) {
 
             Livro atual = ordenacaoAno.get(j);
             Livro proximo = ordenacaoAno.get(j + 1);
@@ -199,6 +199,11 @@ public class LivroService {
         // Validação do Ano de Publicação
         if (livroValidar.getAnoPublicacao() < 1900 || livroValidar.getAnoPublicacao() > LocalDate.now().getYear()) {
             throw new Exception("Ano de publicação inválido");
+        }
+
+        // validação da quantia de páginas
+        if (livroValidar.getNumeroPagina() <= 0){
+            throw new Exception("Número de páginas inválido");
         }
 
     }
