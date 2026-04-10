@@ -11,8 +11,9 @@ void main() {
             1- Cadastrar livro
             2- Listar livros
             3- Pesquisar
-            4- Remover livro
-            5- Editar livro
+            4- Ordenar livros
+            5- Remover livro
+            6- Editar livro
             0- Sair
             """;
 
@@ -34,7 +35,7 @@ void main() {
                             """;
                     IO.println(menuPesquisa);
                     int opcaoPesquisa = Input.scanInt("Digite uma opção: ");
-                    try{
+        
                         switch (opcaoPesquisa) {
                         case 1 -> pesquisar();
                         case 2 -> pesquisarAutor();
@@ -42,12 +43,29 @@ void main() {
                         case 4 -> pesquisarNumPag();
                         default -> IO.println("Opção inválida");
                         }
-                    } catch (Exception e) {
-                        IO.println("ERRO: " + e.getMessage());
-                    }
+                    
                 }
-                case 4 -> remover();
-                case 5 -> editar();
+                case 4 -> { String menuOrdenacao = """
+                            ===== ORDENAR POR =====
+                            1- Títulos (alfabeticamente)
+                            2- Autor (alfabeticamente)
+                            3- Ano de publicação (mais recente)
+                            4- Ano de publicação (mais antigo)
+                            """;
+                    IO.println(menuOrdenacao);
+                    int opcaoOrdenacao = Input.scanInt("Digite uma opção: ");
+                    
+                        switch(opcaoOrdenacao){
+                            case 1 -> ordenarTitulos();
+                            case 2 -> ordenarAutores();
+                            case 3 -> ordenarAno("decrescente");
+                            case 4 -> ordenarAno("crescente");
+                            default -> IO.println("Opção inválida");
+                        }
+                    
+                    }
+                case 5 -> remover();
+                case 6 -> editar();
                 case 0 -> IO.println("Até breve!");
                 default -> IO.println("Opção inválida");
 
@@ -97,7 +115,7 @@ void pesquisarAutor(){
     imprimirLista(autores);
 }
 
-void pesquisarAno(){
+void pesquisarAno()throws Exception{
     int ano1 = Input.scanInt("Digite a ano mínimo: ");
     int ano2 = Input.scanInt("Digite a ano máximo: ");
 
@@ -106,7 +124,7 @@ void pesquisarAno(){
     imprimirLista(anosCompativeis);
 }
 
-void pesquisarNumPag(){
+void pesquisarNumPag()throws Exception{
     int minPag = Input.scanInt("Digite o número mínimo de páginas: ");
     int maxPag = Input.scanInt("Digite o número máximo de páginas: ");
 
@@ -115,7 +133,23 @@ void pesquisarNumPag(){
     imprimirLista(numPagCompativeis);
 }
 
+void ordenarTitulos(){
+    List<Livro> livrosAlfebeticamenteOrdenados = service.ordenarAlfabeticamente("titulo");
 
+    imprimirLista(livrosAlfebeticamenteOrdenados);
+}
+
+void ordenarAutores(){
+    List<Livro> autoresAlfebeticamenteOrdenados = service.ordenarAlfabeticamente("autor");
+
+    imprimirLista(autoresAlfebeticamenteOrdenados);
+}
+
+void ordenarAno(String topico){
+    List<Livro> ordenacaoAnos = service.ordenarAno(topico);
+
+    imprimirLista(ordenacaoAnos);
+}
 
 void remover() throws Exception{
     List<Livro> livros = service.listar();//retorna o acervo inteiro
@@ -125,7 +159,6 @@ void remover() throws Exception{
 
     service.remover(indice);
 
-    imprimirLista(livros);
 }
 
 void imprimirLista(List<Livro> livros){
@@ -135,6 +168,7 @@ void imprimirLista(List<Livro> livros){
         return;
     }
 
+    IO.println("===== ACERVO =====");
     int i = 1;
     for (Livro livro : livros) {
         IO.println(i++ + "- " + livro); //i++ -> incrementa 1 só depois da primeira iteração; != ++i
