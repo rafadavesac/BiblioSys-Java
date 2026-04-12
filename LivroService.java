@@ -128,7 +128,7 @@ public class LivroService {
             Livro proximo = ordenacaoAno.get(j + 1);
 
             if (topico.equals("crescente")){
-                if (atual.getAnoPublicacao() > proximo.getAnoPublicacao()) {  //
+                if (atual.getAnoPublicacao() > proximo.getAnoPublicacao()) {  
                 ordenacaoAno.set(j, proximo); //o ano 'menor' aparece antes
                 ordenacaoAno.set(j + 1, atual);
                 }
@@ -152,8 +152,7 @@ public class LivroService {
     }
 
     public void editar(int indice, Livro livroEditado) throws Exception {
-        // Validaçao do indice -> é chamada no Main logo após o input do indice e antes
-        // do usuário inserir os novos dados do livro
+        // Validaçao do indice -> é chamada no Main logo após o input do indice e antes do usuário inserir os novos dados do livro
 
         // Validações gerais do livro
         validar(livroEditado);
