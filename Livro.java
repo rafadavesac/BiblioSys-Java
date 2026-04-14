@@ -50,7 +50,7 @@ public class Livro {
     }
 
     @Override
-    public String toString() {
+    public String toString() { //vem da superclasse Object (a classe mãe de todas as classes) -> é uma classe já imbutida no Java
         return "Título: " + this.titulo 
                 + " | Autor:  " + this.autor 
                 + " | Ano: " + this.anoPublicacao 
