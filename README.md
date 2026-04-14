@@ -7,7 +7,7 @@ Rafaela Laimer Davesac - RA: 1138820
 
 ## Sistema de Pesquisa
 
-O sistema foi aprimorado para permitir diferentes formas de busca, além da pesquisa por título.
+O sistema foi aprimorado para permitir diferentes formas de busca
 
 ### Funcionalidades:
 
@@ -20,7 +20,7 @@ O sistema foi aprimorado para permitir diferentes formas de busca, além da pesq
 
 ## Sistema de Ordenação
 
-Foi adicionado um menu de ordenação para organizar os livros conforme diferentes critérios.
+Foi adicionado um menu de ordenação para organizar os livros conforme diferentes critérios
 
 ### Opções:
 
